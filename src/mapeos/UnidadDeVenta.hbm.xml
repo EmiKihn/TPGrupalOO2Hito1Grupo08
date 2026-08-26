@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.UnidadDeVenta" table="unidadesDeVenta">
+		<id name="idUnidadDeVenta" column="idUnidadDeVenta">
+			<generator class="identity"/>
+		</id>
+		<property name="nombre" column="nombre" type="string"/>
+		<property name="superficieOcupada" column="superficieOcupada" type="double"/>
+		<property name="codigo" column="codigo" type="string"/>
+		
+		<many-to-one name="festival" class="datos.Festival" column="idFestival" not-null="true"/>
+		
+		<!-- STAFF-->	
+		<set name="staff" table="staff" cascade="save-update" order-by="idPersonalFestival asc" inverse="true" lazy="true" 
+		fetch="select">
+			<key column="idUnidadDeVenta" not-null="true"/>
+			<one-to-many  class="datos.PersonalFestival"/>
+		</set>
+		
+		<!-- PLATOS-->
+		<set name="platos" table="platos" cascade="save-update" order-by="idPlato asc" lazy="true"
+		fetch="select">
+			<key column="idUnidadDeVenta" not-null="true"/>
+			<one-to-many class="datos.Plato"/>
+		</set>
+		
+		<!-- PEDIDOS-->
+		<set name="pedidos" table="pedidos" cascade="save-update" order-by="idPedido asc" inverse="true" lazy="true"
+		 fetch="select">
+		 	<key column="idUnidadDeVenta" not-null="true"></key>
+		 	<one-to-many class="datos.Pedido"/>
+		 </set>
+		
+		<joined-subclass name="datos.FoodTruck" table="foodtruck">
+			<key column="idFoodtruck"/>
+			<property name="patente" column="patente" type="string"/>
+			<property name="requiereElectricidad" column="requiereElectricidad" type="boolean"/>
+		</joined-subclass>
+		
+		<joined-subclass name="datos.PuestoDesarmable" table="puestodesarmable">
+			<key column="idPuestoDesarmable"/>
+			<property name="cantCarpas" column="cantCarpas" type="int"/>
+			<property name="tiempoMontaje" column="tiempoMontaje" type="int"/>
+		</joined-subclass>
+		
+	</class>
+</hibernate-mapping>
