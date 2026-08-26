@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.Pedido" table="pedido">
+		<id name="idPedido" column="idPedido">
+			<generator class="identity"></generator>
+		</id>
+		<property name="fechaTransaccion" column="fechaTransaccion" type="java.time.LocalDate"/>
+		
+		<many-to-one name="cajero" class="datos.Cajero" column="idCajero"/>
+		<many-to-one name="unidadDeVenta" class="datos.UnidadDeVenta" column="idUnidadDeVenta"/>
+		
+		<bag name="detalles" table="detalles" cascade="all" order-by="idDetallePedido asc" inverse="true" lazy="true" fetch="select">
+			<key column="idPedido" not-null="true"/>
+			<one-to-many class="datos.DetallePedido" />
+		</bag>
+		
+	</class>
+</hibernate-mapping>
