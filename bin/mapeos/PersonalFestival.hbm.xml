@@ -9,7 +9,7 @@
  		</id>
  		<property name="nombre" column="nombre" type="string"/>
  		<property name="apellido" column="apellido" type="string"/>
- 		<property name="dni" column="dni" type="string"/>
+ 		<property name="dni" column="dni" type="long"/>
  		<property name="fechaIngreso" column="fechaIngreso" type="java.time.LocalDate"/>
  		<property name="representante" column="representante" type="boolean"/>
  		<property name="fechaNacimiento" column="fechaNacimiento" type="java.time.LocalDate"/>
