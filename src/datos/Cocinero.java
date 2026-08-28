@@ -2,7 +2,6 @@ package datos;
 
 import java.time.LocalDate;
 public class Cocinero extends PersonalFestival {
-	private long idCocinero;
 	private String especialidad;
 	private double plusFijo;
 	private LocalDate fechaVencimientoCarnet;
@@ -16,15 +15,6 @@ public class Cocinero extends PersonalFestival {
 		this.especialidad = especialidad;
 		this.plusFijo = plusFijo;
 		this.fechaVencimientoCarnet = fechaVencimientoCarnet;
-	}
-
-
-	public long getIdCocinero() {
-		return idCocinero;
-	}
-
-	protected void setIdCocinero(long idCocinero) {
-		this.idCocinero = idCocinero;
 	}
 
 	public String getEspecialidad() {

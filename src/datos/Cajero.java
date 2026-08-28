@@ -3,26 +3,18 @@ package datos;
 import java.time.LocalDate;
 
 public class Cajero extends PersonalFestival {
-	private long idCajero;
 	private String turno;
 	private double recaudacionTotal;
 	
 	public Cajero() {}
 
 	public Cajero(String nombre, String apellido, long dni, LocalDate fechaIngreso,
-			boolean representante, LocalDate fechaNacimiento, String turno, double recaudacionTotal) {
+			boolean representante, LocalDate fechaNacimiento, String turno) {
 		super(nombre, apellido, dni, fechaIngreso, representante, fechaNacimiento);
 		this.turno = turno;
-		this.recaudacionTotal = recaudacionTotal;
+		this.recaudacionTotal = 0.0;
 	}
 
-	public long getIdCajero() {
-		return idCajero;
-	}
-
-	protected void setIdCajero(long idCajero) {
-		this.idCajero = idCajero;
-	}
 
 	public String getTurno() {
 		return turno;
