@@ -1,7 +1,7 @@
 package datos;
 
 public class FoodTruck extends UnidadDeVenta {
-	private long idFoodTruck;
+	
 	private String patente;
 	private boolean requiereElectricidad;
 	
@@ -14,13 +14,6 @@ public class FoodTruck extends UnidadDeVenta {
 		this.requiereElectricidad = requiereElectricidad;
 	}
 
-	public long getIdFoodTruck() {
-		return idFoodTruck;
-	}
-
-	protected void setIdFoodTruck(long idFoodTruck) {
-		this.idFoodTruck = idFoodTruck;
-	}
 
 	public String getPatente() {
 		return patente;
@@ -40,7 +33,7 @@ public class FoodTruck extends UnidadDeVenta {
 
 	@Override
 	public String toString() {
-		return "FoodTruck ["+ super.toString() + "patente=" + patente + ", requiereElectricidad=" + requiereElectricidad + "]";
+		return "FoodTruck [" + super.toString() + ", patente=" + patente + ", requiereElectricidad=" + requiereElectricidad + "]";
 	}
 
 	

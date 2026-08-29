@@ -16,7 +16,7 @@ public abstract class UnidadDeVenta {
 
 	public UnidadDeVenta( String nombre, double superficieOcupada, String codigo,
 			Festival festival) {
-		super();
+	
 		this.nombre = nombre;
 		this.superficieOcupada = superficieOcupada;
 		this.codigo = codigo;
@@ -91,7 +91,7 @@ public abstract class UnidadDeVenta {
 	@Override
 	public String toString() {
 		return "UnidadDeVenta [idUnidadDeVenta=" + idUnidadDeVenta + ", nombre=" + nombre + ", superficieOcupada="
-				+ superficieOcupada + ", codigo=" + codigo + " ";
+				+ superficieOcupada + ", codigo=" + codigo + "]";
 	};
 	
 	

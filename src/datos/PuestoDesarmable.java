@@ -1,7 +1,7 @@
 package datos;
 
 public class PuestoDesarmable extends UnidadDeVenta{
-	private long idPuestoDesarmable;
+
 	private int cantCarpas;
 	private int tiempoMontaje;
 	
@@ -14,14 +14,7 @@ public class PuestoDesarmable extends UnidadDeVenta{
 		this.tiempoMontaje = tiempoMontaje;
 	}
 
-	public long getIdPuestoDesarmable() {
-		return idPuestoDesarmable;
-	}
-
-	protected void setIdPuestoDesarmable(long idPuestoDesarmable) {
-		this.idPuestoDesarmable = idPuestoDesarmable;
-	}
-
+	
 	public int getCantCarpas() {
 		return cantCarpas;
 	}
@@ -40,8 +33,8 @@ public class PuestoDesarmable extends UnidadDeVenta{
 	
 	@Override
 	public String toString() {
-		return "PuestoDesarmable ["+ super.toString() +"cantCarpas=" + cantCarpas + ", tiempoMontaje=" + tiempoMontaje + "]";
-	};
+		return "PuestoDesarmable [" + super.toString() + ", cantCarpas=" + cantCarpas + ", tiempoMontaje=" + tiempoMontaje + "]";
+	}
 	
 	
 }
