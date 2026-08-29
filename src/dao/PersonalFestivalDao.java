@@ -7,8 +7,9 @@ import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-import datos.PersonalFestival;
 
+import datos.Cocinero;
+import datos.PersonalFestival;
 public class PersonalFestivalDao {
 	
 	private static Session session;
@@ -65,4 +66,22 @@ public class PersonalFestivalDao {
 		}
 		return staff;
 	}
+	
+	//CASO DE USO TRAER COCINERO POR ESPECIALIDAD
+	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
+		List<Cocinero> cocineros = new ArrayList<Cocinero>();
+		try {
+			iniciaOperacion();
+			Query<Cocinero> query = session.createQuery("FROM Cocinero c WHERE c.especialidad = :especialidad", Cocinero.class)
+					.setParameter("especialidad", especialidad);
+			cocineros= query.getResultList();
+			}catch(HibernateException he) {
+			manejaExcepcion(he);
+			tx.rollback();
+		}finally {
+			session.close();
+		}
+		return cocineros;
+	}
+	
 }
