@@ -20,6 +20,6 @@ public class PersonalFestivalABM {
 	}
 	
 	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
-		return dao.traerCocineroPorEspecialidad(especialidad);
+		return dao.traerCocinerosPorEspecialidad(especialidad);
 	}
 }
