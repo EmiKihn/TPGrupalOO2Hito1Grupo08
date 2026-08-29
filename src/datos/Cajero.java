@@ -34,7 +34,7 @@ public class Cajero extends PersonalFestival {
 
 	@Override
 	public String toString() {
-		return "Cajero ["+super.toString()+", turno=" + turno + ", recaudacionTotal=" + recaudacionTotal + "]";
+		return "Cajero ["+super.toString()+", turno=" + turno + ", recaudacionTotal=" + recaudacionTotal + "]\n";
 	}
 	
 

@@ -44,7 +44,7 @@ public class Cocinero extends PersonalFestival {
 	@Override
 	public String toString() {
 		return "Cocinero ["+super.toString()+", especialidad=" + especialidad + ", plusFijo=" + plusFijo
-				+ ", fechaVencimientoCarnetDeManipulacion=" + fechaVencimientoCarnet + "]";
+				+ ", fechaVencimientoCarnetDeManipulacion=" + fechaVencimientoCarnet + "] \n";
 	}
 	
 	
