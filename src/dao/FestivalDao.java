@@ -23,7 +23,7 @@ public class FestivalDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 		}
 	
-	public Festival traer(long idFestival) {
+	public Festival traer(long idFestival) throws HibernateException{
 		Festival objeto = null;
 		try {
 		iniciaOperacion();
@@ -36,7 +36,7 @@ public class FestivalDao {
 		return objeto;
 		}
 	
-	public List<Festival> traer() {
+	public List<Festival> traer() throws HibernateException {
 		List<Festival> lista = new ArrayList<Festival>();
 		try {
 		iniciaOperacion();
@@ -67,6 +67,20 @@ public class FestivalDao {
 		}
 		return objeto;
 		}
+	
+	public Long traerCantidadUnidadesDeVenta(long idFestival) {
+		Long cantidad = null;
+		try {
+			iniciaOperacion();
+			String hql = "select count(u) from UnidadDeVenta u where u.festival.idFestival =:idFestival";
+		cantidad = (Long) session.createQuery(hql).setParameter("idFestival", idFestival).uniqueResult();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+		} finally {
+			session.close();
+		}
+		return cantidad;
+	}
 
 	
 	

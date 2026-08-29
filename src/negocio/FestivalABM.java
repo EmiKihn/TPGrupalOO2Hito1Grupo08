@@ -1,6 +1,5 @@
 package negocio;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import dao.FestivalDao;
@@ -20,5 +19,9 @@ public class FestivalABM {
 	
 	public Festival traerFestivalYUnidad(long idFestival) {
 		return dao.traerFestivalYUnidadesDeVenta(idFestival);
+	}
+	
+	public Long traerCantidadUnidadesDeVenta(long idFestival) {
+		return dao.traerCantidadUnidadesDeVenta(idFestival);
 	}
 }
