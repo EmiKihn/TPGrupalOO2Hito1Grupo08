@@ -2,6 +2,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,6 +28,8 @@ public class FestivalDao {
 		try {
 		iniciaOperacion();
 		objeto = (Festival) session.get(Festival.class, idFestival);
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
 		} finally {
 		session.close();
 		}
@@ -39,11 +42,34 @@ public class FestivalDao {
 		iniciaOperacion();
 		Query<Festival> query = session.createQuery("from Festival f", Festival.class);
 		lista = query.getResultList();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
 		} finally {
 		session.close();
 		}
 		return lista;
 		}
+	
+	public Festival traerFestivalYUnidadesDeVenta(long idFestival) throws HibernateException {
+		Festival objeto = null;
+		try {
+		iniciaOperacion();
+		String hql = "from Festival f where f.idFestival=:idFestival";
+		objeto=(Festival) session.createQuery(hql).setParameter("idFestival", idFestival).uniqueResult();
+		if (objeto != null) {
+		    Hibernate.initialize(objeto.getUnidadesDeVenta()); //Por si no existe un festival con ese id
+		}
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+		}
+		finally {
+		session.close();
+		}
+		return objeto;
+		}
+
+	
+	
 		}
 
 
