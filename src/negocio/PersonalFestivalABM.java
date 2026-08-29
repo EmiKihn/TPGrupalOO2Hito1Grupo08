@@ -3,6 +3,7 @@ package negocio;
 import java.util.List;
 import dao.PersonalFestivalDao;
 import datos.PersonalFestival;
+import datos.Cocinero;
 public class PersonalFestivalABM {
 	PersonalFestivalDao dao = new PersonalFestivalDao();
 	
@@ -18,4 +19,7 @@ public class PersonalFestivalABM {
 		return dao.traer();
 	}
 	
+	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
+		return dao.traerCocineroPorEspecialidad(especialidad);
+	}
 }
