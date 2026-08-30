@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import datos.PuestoDesarmable;
 
@@ -15,18 +17,19 @@ public class PuestoDesarmableDao extends UnidadDeVentaDao {
 		return instancia;
 	}
 
-	public PuestoDesarmable traerPorCantidadCarpas(int cantidad) throws HibernateException {
-		PuestoDesarmable objeto = null;
-		try {
-			iniciaOperacion();
-			objeto = session.createQuery(
-				"from PuestoDesarmable pd where pd.cantCarpas=:cantCarpas", PuestoDesarmable.class).setParameter("cantCarpas", cantidad).uniqueResult();
-			tx.commit();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-		} finally {
-			session.close();
-		}
-		return objeto;
+	public List<PuestoDesarmable> traerPorCantidadCarpas(int cantidad) throws HibernateException {
+	    List<PuestoDesarmable> lista = null;
+	    try {
+	        iniciaOperacion();
+	        lista = session.createQuery(
+	            "from PuestoDesarmable pd where pd.cantCarpas=:cantCarpas", PuestoDesarmable.class)
+	            .setParameter("cantCarpas", cantidad).list(); 
+	        tx.commit();
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	    } finally {
+	        session.close();
+	    }
+	    return lista;
 	}
 }

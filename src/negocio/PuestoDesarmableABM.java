@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import dao.PuestoDesarmableDao;
 import datos.Festival;
@@ -28,10 +30,9 @@ public class PuestoDesarmableABM {
 	
 	
 
-	public PuestoDesarmable traer(int cantidad)throws HibernateException {
-		return PuestoDesarmableDao.getInstance().traerPorCantidadCarpas(cantidad);
+	public List<PuestoDesarmable> traer(int cantidad) throws HibernateException {
+	    return PuestoDesarmableDao.getInstance().traerPorCantidadCarpas(cantidad);
 	}
-
 	
 
 	
