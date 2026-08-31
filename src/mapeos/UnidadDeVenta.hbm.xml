@@ -9,7 +9,8 @@
 		</id>
 		<property name="nombre" column="nombre" type="string"/>
 		<property name="superficieOcupada" column="superficieOcupada" type="double"/>
-		<property name="codigo" column="codigo" type="string"/>
+		<property name="codigo" column="codigo" type="string" length="10" not-null="true" unique="true" 
+    check="CHAR_LENGTH(codigo) = 10"/>
 		
 		<many-to-one name="festival" class="datos.Festival" column="idFestival" not-null="true"/>
 		
@@ -36,7 +37,8 @@
 		
 		<joined-subclass name="datos.FoodTruck" table="foodtruck">
 			<key column="idFoodtruck"/>
-			<property name="patente" column="patente" type="string"/>
+		<property name="patente" column="patente" type="string" length="7" not-null="true" unique="true" 
+    check="CHAR_LENGTH(patente) = 7"/>
 			<property name="requiereElectricidad" column="requiereElectricidad" type="boolean"/>
 		</joined-subclass>
 		
