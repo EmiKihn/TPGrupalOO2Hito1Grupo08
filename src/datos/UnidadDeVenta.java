@@ -90,7 +90,7 @@ public abstract class UnidadDeVenta {
 
 	@Override
 	public String toString() {
-		return "UnidadDeVenta [idUnidadDeVenta=" + idUnidadDeVenta + ", nombre=" + nombre + ", superficieOcupada="
+		return "[idUnidadDeVenta=" + idUnidadDeVenta + ", nombre=" + nombre + ", superficieOcupada="
 				+ superficieOcupada + ", codigo=" + codigo + "]";
 	};
 	
