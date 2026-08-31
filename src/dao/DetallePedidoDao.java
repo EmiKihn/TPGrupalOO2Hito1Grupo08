@@ -39,21 +39,6 @@ public class DetallePedidoDao {
 		return objeto;
 		}
 	
-	public DetallePedido traerPorId(long idDetallePedido) {
-		DetallePedido objeto = null;
-		try {
-		iniciaOperacion();
-		objeto= (DetallePedido) session.createQuery("from DetallePedido d where d.idDetallePedido = :idDetallePedido")
-				.setParameter("idDetallePedido", idDetallePedido)
-				.uniqueResult();
-		}catch(HibernateException he) {
-			manejaExcepcion(he);
-		} finally {
-		session.close();
-		}
-		return objeto;
-		}
-	
 	public List<DetallePedido> traer() {
 		List<DetallePedido> lista = new ArrayList<DetallePedido>();
 		try {

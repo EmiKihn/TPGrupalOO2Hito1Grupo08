@@ -14,10 +14,6 @@ public class TestTraerDetallePedido {
 		
 		System.out.println("Traer detalle pedido con id 1:\n");
 		System.out.println(abm.traer(1));
-		
-		System.out.println("Traer detalle pedido con id 2:\n");
-		System.out.println(abm.traerPorId(2));
-		
 	}
 
 }

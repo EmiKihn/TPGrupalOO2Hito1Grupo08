@@ -16,8 +16,4 @@ public class DetallePedidoABM {
 	public List<DetallePedido> traer() {
 		return dao.traer();
 	}
-	
-	public DetallePedido traerPorId(long idDetallePedido) {
-		return dao.traerPorId(idDetallePedido);
-	}
 }
