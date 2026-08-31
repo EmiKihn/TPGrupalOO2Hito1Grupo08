@@ -1,5 +1,9 @@
 package dao;
 
+
+
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import datos.FoodTruck;
 
@@ -28,4 +32,27 @@ public class FoodTruckDao extends UnidadDeVentaDao {
 		}
 		return objeto;
 	}
+	
+	
+	public List<FoodTruck> traerTodos() throws HibernateException {
+	    List<FoodTruck> lista = null;
+	    try {
+	        iniciaOperacion();
+	        lista = session.createQuery("from FoodTruck", FoodTruck.class).list();
+	        tx.commit();
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	    } finally {
+	        session.close();
+	    }
+	    return lista;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
