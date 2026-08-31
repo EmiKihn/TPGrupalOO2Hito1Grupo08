@@ -1,9 +1,6 @@
 package dao;
 
-
-
 import java.util.List;
-
 import org.hibernate.HibernateException;
 import datos.FoodTruck;
 
@@ -47,12 +44,6 @@ public class FoodTruckDao extends UnidadDeVentaDao {
 	    }
 	    return lista;
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 }
