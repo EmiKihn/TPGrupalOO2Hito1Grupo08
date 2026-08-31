@@ -1,25 +1,37 @@
 package negocio;
 
+import java.time.LocalDate;
 import java.util.List;
 import dao.PersonalFestivalDao;
 import datos.PersonalFestival;
 import datos.Cocinero;
 public class PersonalFestivalABM {
-	PersonalFestivalDao dao = new PersonalFestivalDao();
+	private static PersonalFestivalABM instancia= null;
+	
+	public static PersonalFestivalABM getInstance() {
+		if(instancia==null) {
+			instancia= new PersonalFestivalABM();
+		}
+		return instancia;
+	}
 	
 	public PersonalFestival traer(long idPersonalFestival) {
-		return dao.traer(idPersonalFestival);
+		return PersonalFestivalDao.getInstance().traer(idPersonalFestival);
 	}
 	
 	public PersonalFestival traerPorDni(long dni) {
-		return dao.traerPorDni(dni);
+		return PersonalFestivalDao.getInstance().traerPorDni(dni);
 	}
 	
 	public List<PersonalFestival> traer(){
-		return dao.traer();
+		return PersonalFestivalDao.getInstance().traer();
 	}
 	
 	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
-		return dao.traerCocinerosPorEspecialidad(especialidad);
+		return PersonalFestivalDao.getInstance().traerCocinerosPorEspecialidad(especialidad);
+	}
+	
+	public List<Cocinero> traerCocinerosCarnetVencido(LocalDate fecha){
+		return PersonalFestivalDao.getInstance().traerCocinerosCarnetVencido(fecha);
 	}
 }

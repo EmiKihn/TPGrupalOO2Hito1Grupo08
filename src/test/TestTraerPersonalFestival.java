@@ -7,12 +7,12 @@ import java.util.List;
 public class TestTraerPersonalFestival {
 	
 	public static void main(String[] args) {
-		PersonalFestivalABM personalAbm = new PersonalFestivalABM();
+
 		long idPersonal= 1;
 		long dni=11111111;
-		PersonalFestival p = personalAbm.traer(idPersonal);
-		PersonalFestival pDni= personalAbm.traerPorDni(dni);
-		List<PersonalFestival> pLista= personalAbm.traer();
+		PersonalFestival p = PersonalFestivalABM.getInstance().traer(idPersonal);
+		PersonalFestival pDni= PersonalFestivalABM.getInstance().traerPorDni(dni);
+		List<PersonalFestival> pLista= PersonalFestivalABM.getInstance().traer();
 		System.out.print("TRAER POR ID: ");
 		System.out.println(p.toString());
 		System.out.print("TRAER POR DNI: ");

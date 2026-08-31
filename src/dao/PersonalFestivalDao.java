@@ -5,6 +5,7 @@ import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +15,21 @@ public class PersonalFestivalDao {
 	
 	private static Session session;
 	private static Transaction tx;
+	private static PersonalFestivalDao instancia = null; 
+
+	public static PersonalFestivalDao getInstance() {
+		if(instancia==null) {
+			instancia= new PersonalFestivalDao();
+		}
+		return instancia;
+	}
 	
-	private void iniciaOperacion() throws HibernateException{
+	protected void iniciaOperacion() throws HibernateException{
 		session=HibernateUtil.getSessionFactory().openSession();
 		tx= session.beginTransaction();
 	}
 	
-	private void manejaExcepcion(HibernateException he) {
+	protected void manejaExcepcion(HibernateException he) {
 		tx.rollback();
 		throw new HibernateException("ERROR EN LA CAPA DE ACCESO DE DATOS", he);
 	}
@@ -67,7 +76,7 @@ public class PersonalFestivalDao {
 		return staff;
 	}
 	
-	//CASO DE USO TRAER COCINERO POR ESPECIALIDAD
+	//CASO DE USO TRAER COCINEROS POR ESPECIALIDAD
 	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
 		List<Cocinero> cocineros = new ArrayList<Cocinero>();
 		try {
@@ -77,11 +86,26 @@ public class PersonalFestivalDao {
 			cocineros= query.getResultList();
 			}catch(HibernateException he) {
 			manejaExcepcion(he);
-			tx.rollback();
 		}finally {
 			session.close();
 		}
 		return cocineros;
 	}
 	
+	//CASO DE USO TRAER COCINEROS CON CARNET VENCIDO 
+	public List<Cocinero> traerCocinerosCarnetVencido(LocalDate fecha){
+		List<Cocinero> cocineros = new ArrayList<>();
+	    try {
+	        iniciaOperacion();
+	        String hql = "from Cocinero c where c.fechaVencimientoCarnet <=: fecha";
+	        cocineros = session.createQuery(hql, Cocinero.class)
+	                       .setParameter("fecha", fecha)
+	                       .getResultList();
+			}catch(HibernateException he) {
+			manejaExcepcion(he);
+		}finally {
+			session.close();
+		}
+		return cocineros;
+	}
 }
