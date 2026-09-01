@@ -158,5 +158,22 @@ public class PersonalFestivalDao {
 		}
 		return cajeros;
 	}
-
+	
+	//CASO DE USO RECAUDACION TOTAL POR TURNO
+	public double traerRecaudacionTotalPorTurno(String turno){
+		double recaudacionTotal=0.0;
+		try {
+			iniciaOperacion();
+			String hql="SELECT sum(c.recaudacionTotal) from Cajero c where c.turno=:turno";
+			Query<Double> query=session.createQuery(hql, Double.class)
+					.setParameter("turno", turno);
+			
+			recaudacionTotal= query.uniqueResult();
+		}catch (HibernateException he){
+			manejaExcepcion(he);
+		}finally {
+			session.close();
+		}
+		return recaudacionTotal;
+	}
 }
