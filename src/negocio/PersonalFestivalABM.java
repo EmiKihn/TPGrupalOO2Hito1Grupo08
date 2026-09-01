@@ -27,6 +27,9 @@ public class PersonalFestivalABM {
 		return PersonalFestivalDao.getInstance().traer();
 	}
 	
+	public PersonalFestival traerRepresentantePorUnidad(long idUnidad) {
+		return PersonalFestivalDao.getInstance().traerRepresentantePorUnidad(idUnidad);
+	}
 	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
 		return PersonalFestivalDao.getInstance().traerCocinerosPorEspecialidad(especialidad);
 	}
@@ -34,4 +37,7 @@ public class PersonalFestivalABM {
 	public List<Cocinero> traerCocinerosCarnetVencido(LocalDate fecha){
 		return PersonalFestivalDao.getInstance().traerCocinerosCarnetVencido(fecha);
 	}
+	
+
 }
+

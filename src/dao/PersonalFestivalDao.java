@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import datos.Cajero;
 import datos.Cocinero;
 import datos.PersonalFestival;
 public class PersonalFestivalDao {
@@ -76,6 +77,22 @@ public class PersonalFestivalDao {
 		return staff;
 	}
 	
+	public PersonalFestival traerRepresentantePorUnidad(long idUnidad) {
+		PersonalFestival representante= null;
+		try {
+			iniciaOperacion();
+			String hql="SELECT pf from UnidadDeVenta u JOIN u.staff pf where u.idUnidadDeVenta=:idUnidad AND pf.representante=true";
+			representante= session.createQuery(hql,PersonalFestival.class)
+					.setParameter("idUnidad", idUnidad)
+					.uniqueResult();
+		}catch(HibernateException he) {
+			manejaExcepcion(he);
+		}finally {
+			session.close();
+		}
+		return representante;
+	}
+	
 	//CASO DE USO TRAER COCINEROS POR ESPECIALIDAD
 	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
 		List<Cocinero> cocineros = new ArrayList<Cocinero>();
@@ -108,4 +125,5 @@ public class PersonalFestivalDao {
 		}
 		return cocineros;
 	}
+
 }
