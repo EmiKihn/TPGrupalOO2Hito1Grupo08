@@ -47,5 +47,8 @@ public class PersonalFestivalABM {
 		return PersonalFestivalDao.getInstance().traerCajerosPorRecaudacionTotalEntre(recaudacionTotalA, recaudacionTotalB);
 	}
 	
+	public double traerRecaudacionTotalPorTurno(String turno){
+		return PersonalFestivalDao.getInstance().traerRecaudacionTotalPorTurno(turno);
+	}
 }
 
