@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import dao.PersonalFestivalDao;
 import datos.PersonalFestival;
+import datos.Cajero;
 import datos.Cocinero;
 public class PersonalFestivalABM {
 	private static PersonalFestivalABM instancia= null;
@@ -38,6 +39,9 @@ public class PersonalFestivalABM {
 		return PersonalFestivalDao.getInstance().traerCocinerosCarnetVencido(fecha);
 	}
 	
+	public List<Cajero> traerCajerosPorTurno(String turno){
+		return PersonalFestivalDao.getInstance().traerCajerosPorTurno(turno);
+	}
 
 }
 
