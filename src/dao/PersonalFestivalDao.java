@@ -126,4 +126,18 @@ public class PersonalFestivalDao {
 		return cocineros;
 	}
 
+	//CASO DE USO CAJEROS POR TURNO
+	public List<Cajero> traerCajerosPorTurno(String turno){
+		List<Cajero> cajeros= new ArrayList<Cajero>();
+		try {
+			iniciaOperacion();
+			String hql="from Cajero c where c.turno=:turno";
+			cajeros= session.createQuery(hql, Cajero.class).setParameter("turno", turno).getResultList();
+		}catch(HibernateException he) {
+			manejaExcepcion(he);
+		}finally {
+			session.close();
+		}
+		return cajeros;
+	}
 }
