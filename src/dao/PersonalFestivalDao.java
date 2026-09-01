@@ -140,4 +140,23 @@ public class PersonalFestivalDao {
 		}
 		return cajeros;
 	}
+	
+	//CASO DE USO CAJEROS POR RECAUDACION TOTAL ENTRE
+	public List<Cajero> traerCajerosPorRecaudacionTotalEntre(double recaudacionTotalA, double recaudacionTotalB){
+		List<Cajero> cajeros= new ArrayList<Cajero>();
+		try {
+			iniciaOperacion();
+			String hql="from Cajero c where c.recaudacionTotal>=:recaudacionTotalA AND c.recaudacionTotal <=:recaudacionTotalB";
+			cajeros= session.createQuery(hql, Cajero.class)
+					.setParameter("recaudacionTotalA", recaudacionTotalA)
+					.setParameter("recaudacionTotalB", recaudacionTotalB)
+					.getResultList();
+		}catch (HibernateException he){
+			manejaExcepcion(he);
+		}finally {
+			session.close();
+		}
+		return cajeros;
+	}
+
 }
