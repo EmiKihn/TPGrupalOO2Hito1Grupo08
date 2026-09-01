@@ -42,6 +42,10 @@ public class PersonalFestivalABM {
 	public List<Cajero> traerCajerosPorTurno(String turno){
 		return PersonalFestivalDao.getInstance().traerCajerosPorTurno(turno);
 	}
-
+	
+	public List<Cajero> traerCajerosPorRecaudacionTotalEntre(double recaudacionTotalA, double recaudacionTotalB){
+		return PersonalFestivalDao.getInstance().traerCajerosPorRecaudacionTotalEntre(recaudacionTotalA, recaudacionTotalB);
+	}
+	
 }
 
