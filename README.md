@@ -13,3 +13,9 @@
 
 ## Diagrama de Clases:
 <img width="1932" height="1088" alt="DIAGRAMA_TP_GRUPO08" src="https://github.com/user-attachments/assets/428a6929-effc-46bf-9949-e3b4581386c0" />
+
+
+## Responsable y Caso de uso realizado: 
+- Tamara Camino: Traer Lista Unidad de Venta, Traer por patente en FoodTruck y Traer FoodTruck con su personal asignado.
+
+
