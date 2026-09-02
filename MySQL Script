@@ -1,0 +1,58 @@
+CREATE DATABASE if not exists tpgrupaloo2hito1grupo08;
+USE tpgrupaloo2hito1grupo08;
+INSERT INTO Festival (idFestival, nombre, temporada, fechaInicio, fechaFin, costoPorM2, costoPorMontaje, sueldoBase) VALUES 
+(1, 'Festival Gastronómico de Primavera', 'Primavera', '2026-09-21', '2026-09-25', 1500.50, 5000.00, 30000.00),
+(2, 'Feria de Verano', 'Verano', '2027-01-10', '2027-01-20', 2000.00, 6000.00, 35000.00);
+
+-- 2. UnidadDeVenta
+INSERT INTO UnidadesDeVenta (idUnidadDeVenta, nombre, superficieOcupada, codigo, idFestival) VALUES 
+(1, 'Sushi Pampa', 15.5, 'SP-001', 1),
+(2, 'Hamburguesas Maximas', 20.0, 'HM-002', 1),
+(3, 'Tacos del Sur', 12.0, 'TS-003', 2);
+
+-- 3. Foodtruck 
+-- Asumiendo que el ID coincide con el de UnidadDeVenta (herencia)
+INSERT INTO Foodtruck (idFoodtruck, patente, requiereElectricidad) VALUES 
+(1, 'AA123BB', TRUE),
+(2, 'AB456CD', TRUE);
+
+-- 4. PuestoDesarmable 
+INSERT INTO PuestoDesarmable (idPuestoDesarmable, cantCarpas, tiempoMontaje) VALUES 
+(3, 2, 120);
+
+-- 5. PersonalFestival 
+INSERT INTO PersonalFestival (idPersonalFestival, nombre, apellido, dni, fechaIngreso, representante, fechaNacimiento, idUnidadDeVenta) VALUES 
+(1, 'Lucas', 'Gomez', 35123456, '2026-09-01', TRUE, '1990-05-15', 1),
+(2, 'Sofia', 'Martinez', 38123456, '2026-09-02', FALSE, '1995-08-20', 1),
+(3, 'Martin', 'Rodriguez', 40123456, '2026-09-01', TRUE, '1998-11-10', 2),
+(4, 'Lautaro', 'Hernandez',45547897, '2026-09-10', FALSE, '1999-10-10', 2),
+(5, 'Sofia', 'Goda',38785456, '2026-09-08', FALSE, '1987-11-11', 2);
+
+-- 6. Cocinero 
+
+INSERT INTO Cocinero (idCocinero, especialidad, plusFijo, fechaVencimientoCarnet) VALUES 
+(1, 'Sushiman', 15000.00, '2026-09-11'),
+(3, 'Parrillero', 10000.00, '2027-01-30');
+
+-- 7. Cajero
+INSERT INTO Cajero (idCajero, turno, recaudacionTotal) VALUES 
+(2, 'Tarde', 15000),
+(4,'Mañana', 10000),
+(5,'Noche',9000);
+
+-- 8. Plato 
+INSERT INTO Plato (idPlato, nombre, costoDeProduccion, precioDeVenta, idUnidadDeVenta) VALUES 
+(1, 'Roll Pampa x10', 2500.00, 6000.00, 1),
+(2, 'Nigiri de Salmón x5', 3000.00, 7500.00, 1),
+(3, 'Doble Cheeseburger', 1500.00, 4500.00, 2);
+
+-- 9. Pedido
+INSERT INTO Pedido (idPedido, fechaTransaccion, idCajero, idUnidadDeVenta) VALUES 
+(1, '2026-09-21', 2, 1),
+(2, '2026-09-21', 2, 1);
+
+-- 10. DetallePedido
+INSERT INTO DetallePedido (idDetallePedido, cantidad, precioDeVenta, idPedido, idPlato) VALUES 
+(1, 2, 6000.00, 1, 1),
+(2, 1, 7500.00, 1, 2),
+(3, 3, 6000.00, 2, 1);
