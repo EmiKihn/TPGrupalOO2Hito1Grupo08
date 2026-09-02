@@ -72,7 +72,9 @@ public class FestivalDao {
 		Long cantidad = null;
 		try {
 			iniciaOperacion();
-			String hql = "select count(u) from UnidadDeVenta u where u.festival.idFestival =:idFestival";
+			String hql = "select count(u)"
+					+ " from UnidadDeVenta u "
+					+ "where u.festival.idFestival =:idFestival";
 		cantidad = (Long) session.createQuery(hql).setParameter("idFestival", idFestival).uniqueResult();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -80,6 +82,28 @@ public class FestivalDao {
 			session.close();
 		}
 		return cantidad;
+	}
+	
+	public List<Festival> traerFestivalesConXCantDeUnidades(long cantidad) {
+
+	    List<Festival> lista = new ArrayList<Festival>();
+
+	    try {
+	        iniciaOperacion();
+	        String hql = "select f "
+	        		+ "from Festival f "
+	        		+ "join f.unidadesDeVenta u "
+	        		+ "group by f "
+	        		+ "having count(u) > :cantidad";
+	        lista = session.createQuery(hql, Festival.class)
+	                .setParameter("cantidad", cantidad)
+	                .getResultList();
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	    } finally {
+	        session.close();
+	    }
+	    return lista;
 	}
 
 	
