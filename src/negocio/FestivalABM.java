@@ -7,26 +7,32 @@ import datos.Festival;
 
 public class FestivalABM {
 
-	FestivalDao dao = new FestivalDao();
+	private static FestivalABM instancia = null;
+	
+	public static FestivalABM getInstance() {
+		if(instancia==null) {
+			instancia= new FestivalABM();
+		}
+		return instancia;
+	}
 	
 	public Festival traer(long idFestival) {
-		return dao.traer(idFestival);
+		return FestivalDao.getInstance().traer(idFestival);
 	}
 	
 	public List<Festival> traer() {
-		return dao.traer();
+		return FestivalDao.getInstance().traer();
 	}
 	
 	public Festival traerFestivalYUnidad(long idFestival) {
-		return dao.traerFestivalYUnidadesDeVenta(idFestival);
+		return FestivalDao.getInstance().traerFestivalYUnidadesDeVenta(idFestival);
 	}
 	
 	public Long traerCantidadUnidadesDeVenta(long idFestival) {
-		return dao.traerCantidadUnidadesDeVenta(idFestival);
+		return FestivalDao.getInstance().traerCantidadUnidadesDeVenta(idFestival);
 	}
 	
 	public List<Festival>traerFestivalesConXCantDeUnidades(long cantidad){
-		return dao.traerFestivalesConXCantDeUnidades(cantidad);
-		
-				}
+		return FestivalDao.getInstance().traerFestivalesConXCantDeUnidades(cantidad);
+	}
 }

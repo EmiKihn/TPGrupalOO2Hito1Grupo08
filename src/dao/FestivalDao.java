@@ -13,6 +13,15 @@ public class FestivalDao {
 	
 	private static Session session;
 	private Transaction tx;
+	private static FestivalDao instancia= null;
+	
+	public static FestivalDao getInstance() {
+		if(instancia==null) {
+			instancia=new FestivalDao();
+		}
+		return instancia;
+	}
+	
 	private void iniciaOperacion() throws HibernateException {
 	session = HibernateUtil.getSessionFactory().openSession();
 	tx = session.beginTransaction();
@@ -85,16 +94,14 @@ public class FestivalDao {
 	}
 	
 	public List<Festival> traerFestivalesConXCantDeUnidades(long cantidad) {
-
 	    List<Festival> lista = new ArrayList<Festival>();
-
 	    try {
 	        iniciaOperacion();
 	        String hql = "select f "
 	        		+ "from Festival f "
 	        		+ "join f.unidadesDeVenta u "
 	        		+ "group by f "
-	        		+ "having count(u) > :cantidad";
+	        		+ "having count(u) >= :cantidad";
 	        lista = session.createQuery(hql, Festival.class)
 	                .setParameter("cantidad", cantidad)
 	                .getResultList();
