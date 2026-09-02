@@ -7,7 +7,7 @@ import datos.Plato;
 import negocio.PedidoABM;
 import negocio.PlatoABM;
 
-public class TestTraerPlato {
+public class TestGinoRicciardulliTraerPlato {
 
 	public static void main(String[] args) {
 

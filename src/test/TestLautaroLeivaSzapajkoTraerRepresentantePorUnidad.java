@@ -1,6 +1,6 @@
 package test;
 import negocio.PersonalFestivalABM;
-public class TestTraerRepresentantePorUnidad {
+public class TestLautaroLeivaSzapajkoTraerRepresentantePorUnidad {
 
 	public static void main(String[] args) {
 		long idUnidad=1;

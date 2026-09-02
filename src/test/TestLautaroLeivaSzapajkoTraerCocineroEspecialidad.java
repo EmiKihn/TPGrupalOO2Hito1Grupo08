@@ -5,7 +5,7 @@ import datos.Cocinero;
 
 import java.util.ArrayList;
 import java.util.List;
-public class TestTraerCocineroEspecialidad {
+public class TestLautaroLeivaSzapajkoTraerCocineroEspecialidad {
 
 	public static void main(String[] args) {
 		List<Cocinero> cocinerosEspecialidad = new ArrayList<Cocinero>();

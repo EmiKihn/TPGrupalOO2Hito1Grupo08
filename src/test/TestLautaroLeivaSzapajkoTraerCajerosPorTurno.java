@@ -1,6 +1,6 @@
 package test;
 import negocio.PersonalFestivalABM;
-public class TestTraerCajerosPorTurno {
+public class TestLautaroLeivaSzapajkoTraerCajerosPorTurno {
 
 	public static void main(String[] args) {
 String turnoMañana="mañana";

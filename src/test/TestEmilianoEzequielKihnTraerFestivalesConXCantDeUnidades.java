@@ -4,7 +4,7 @@ import java.util.List;
 import datos.Festival;
 import negocio.FestivalABM;
 
-public class TestTraerFestivalesConXCantDeUnidades{
+public class TestEmilianoEzequielKihnTraerFestivalesConXCantDeUnidades{
 	public static void main(String[] args) {
 		int cant=2;
 		List<Festival> lista= FestivalABM.getInstance().traerFestivalesConXCantDeUnidades(cant);
