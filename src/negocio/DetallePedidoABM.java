@@ -6,14 +6,20 @@ import dao.DetallePedidoDao;
 import datos.DetallePedido;
 
 public class DetallePedidoABM {
-
-	DetallePedidoDao dao = new DetallePedidoDao();
+	private static DetallePedidoABM instancia=null;
+	
+	public static DetallePedidoABM getInstance() {
+		if(instancia==null) {
+			instancia=new DetallePedidoABM();
+		}
+		return instancia;
+	}
 	
 	public DetallePedido traer(long idDetallePedido) {
-		return dao.traer(idDetallePedido);
+		return DetallePedidoDao.getInstance().traer(idDetallePedido);
 	}
 	
 	public List<DetallePedido> traer() {
-		return dao.traer();
+		return DetallePedidoDao.getInstance().traer();
 	}
 }

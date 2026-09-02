@@ -9,11 +9,20 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import datos.DetallePedido;
+import negocio.DetallePedidoABM;
 
 public class DetallePedidoDao {
 
 	private static Session session;
 	private static Transaction tx;
+	private static DetallePedidoDao instancia=null;
+	
+	public static DetallePedidoDao getInstance() {
+		if(instancia==null) {
+			instancia=new DetallePedidoDao();
+		}
+		return instancia;
+	}
 	
 	private void iniciaOperacion() throws HibernateException{
 		session=HibernateUtil.getSessionFactory().openSession();
@@ -26,38 +35,26 @@ public class DetallePedidoDao {
 	}
 	
 	public DetallePedido traer(long idDetallePedido) {
-	    DetallePedido objeto = null;
-	    try {
-	        iniciaOperacion();
-
-	        objeto = session.createQuery(
-	            "from DetallePedido d " +
-	            "join fetch d.pedido " +
-	            "join fetch d.plato " +
-	            "where d.idDetallePedido = :id",
-	            DetallePedido.class
-	        )
-	        .setParameter("id", idDetallePedido)
-	        .uniqueResult();
-
-	    } catch(HibernateException he) {
-	        manejaExcepcion(he);
-	    } finally {
-	        session.close();
-	    }
-	    return objeto;
-	}
+		DetallePedido objeto = null;
+		try {
+		iniciaOperacion();
+		String hql= "select d from DetallePedido d inner join fetch d.plato where d.idDetallePedido=:idDetallePedido";
+		objeto = session.createQuery(hql,DetallePedido.class)
+				.setParameter("idDetallePedido", idDetallePedido)
+				.uniqueResult();
+		}catch(HibernateException he) {
+			manejaExcepcion(he);
+		} finally {
+		session.close();
+		}
+		return objeto;
+		}
 	
 	public List<DetallePedido> traer() {
 		List<DetallePedido> lista = new ArrayList<DetallePedido>();
 		try {
 		iniciaOperacion();
-		Query<DetallePedido> query = session.createQuery(
-			    "from DetallePedido d " +
-			    "join fetch d.pedido " +
-			    "join fetch d.plato",
-			    DetallePedido.class
-			);
+		Query<DetallePedido> query = session.createQuery("from DetallePedido d inner join fetch d.plato", DetallePedido.class);
 		lista = query.getResultList();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
