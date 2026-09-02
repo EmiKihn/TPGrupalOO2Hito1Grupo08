@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import dao.FoodTruckDao;
 import datos.Festival;
@@ -29,7 +31,9 @@ public class FoodTruckABM {
 		return FoodTruckDao.getInstance().traerPorPatente(patente);
 	}
 
-	
+	public List<FoodTruck> traerConPersonal() throws HibernateException {
+		return FoodTruckDao.getInstance().traerConPersonalAsignado();
+	}
 	
 	
 }
