@@ -3,7 +3,7 @@ package test;
 import datos.DetallePedido;
 import negocio.DetallePedidoABM;
 
-public class TestTraerDetallePedido {
+public class TestGinoRicciardulliTraerDetallePedido {
 	public static void main(String[] args) {
 		DetallePedido dp=DetallePedidoABM.getInstance().traer(1);
 		System.out.println("Traer detalle pedido con id 1:");

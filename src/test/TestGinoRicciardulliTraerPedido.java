@@ -7,7 +7,7 @@ import datos.DetallePedido;
 import datos.Pedido;
 import negocio.PedidoABM;
 
-public class TestTraerPedido {
+public class TestGinoRicciardulliTraerPedido {
 
 	public static void main(String[] args) {
 		LocalDate fechaDesde= LocalDate.of(2026, 9, 20);

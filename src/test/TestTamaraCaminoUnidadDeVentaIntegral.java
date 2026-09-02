@@ -8,7 +8,7 @@ import datos.UnidadDeVenta;
 import negocio.FoodTruckABM;
 import negocio.UnidadDeVentaABM;
 
-public class TestUnidadDeVentaIntegral {
+public class TestTamaraCaminoUnidadDeVentaIntegral {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

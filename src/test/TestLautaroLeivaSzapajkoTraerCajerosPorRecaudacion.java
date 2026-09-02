@@ -1,6 +1,6 @@
 package test;
 import negocio.PersonalFestivalABM;
-public class TestTraerCajerosPorRecaudacion {
+public class TestLautaroLeivaSzapajkoTraerCajerosPorRecaudacion {
 
 	public static void main(String[] args) {
 		double recaudacionTotalA= 0;

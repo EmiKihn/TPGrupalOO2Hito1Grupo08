@@ -3,7 +3,7 @@ package test;
 import datos.Festival;
 import negocio.FestivalABM;
 import java.util.List;
-public class TestTraerFestival {
+public class TestEmilianoEzequielKihnTraerFestival {
 	public static void main(String[] args) {
 		List<Festival> lista= FestivalABM.getInstance().traer();
 		System.out.println("Test traer todos los festivales:");

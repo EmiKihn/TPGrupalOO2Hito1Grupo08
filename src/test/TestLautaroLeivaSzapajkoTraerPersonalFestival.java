@@ -4,7 +4,7 @@ import negocio.PersonalFestivalABM;
 import datos.PersonalFestival;
 
 import java.util.List;
-public class TestTraerPersonalFestival {
+public class TestLautaroLeivaSzapajkoTraerPersonalFestival {
 	
 	public static void main(String[] args) {
 
