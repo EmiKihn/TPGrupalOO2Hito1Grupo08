@@ -14,6 +14,15 @@ public class PlatoDao {
 
 	private static Session session;
 	private static Transaction tx;
+	private static PlatoDao instancia = null; 
+
+	public static PlatoDao getInstancia() {
+		if(instancia==null) {
+			instancia= new PlatoDao();
+		}
+		return instancia;
+	}
+	
 	
 	private void iniciaOperacion() throws HibernateException{
 		session=HibernateUtil.getSessionFactory().openSession();

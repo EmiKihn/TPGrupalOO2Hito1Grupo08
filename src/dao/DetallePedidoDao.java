@@ -11,7 +11,6 @@ import org.hibernate.query.Query;
 import datos.DetallePedido;
 import negocio.DetallePedidoABM;
 
-
 public class DetallePedidoDao {
 
 	private static Session session;

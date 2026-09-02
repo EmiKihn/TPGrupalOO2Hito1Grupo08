@@ -7,18 +7,28 @@ import datos.Plato;
 
 
 public class PlatoABM {
+	
+	private static PlatoABM instancia = null;
 
-	PlatoDao dao = new PlatoDao();
+	public static PlatoABM getInstancia() {
+		if(instancia==null) {
+			instancia=new PlatoABM();
+		}
+		return instancia;
+	}
 	
 	public Plato traer(long idPlato) {
-		return dao.traer(idPlato);
+		return PlatoDao.getInstancia().traer(idPlato);
 	}
 	
 	public List<Plato> traer() {
-		return dao.traer();
+		return PlatoDao.getInstancia().traer();
 	}
 	
 	public Plato traerPorNombre(String nombre) {
-		return dao.traerPorNombre(nombre);
+		return PlatoDao.getInstancia().traerPorNombre(nombre);
+	}
+private PlatoABM() {
+		
 	}
 }

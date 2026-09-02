@@ -17,6 +17,8 @@ public class TestTraerFestival {
 		System.out.println("Traer todas las unidades de venta del festival 1:\n");
 		System.out.println(abm.traerFestivalYUnidad(1));
 		
+		System.out.println(abm.traerFestivalesConXCantDeUnidades(5));
+		
 	}
 
 }

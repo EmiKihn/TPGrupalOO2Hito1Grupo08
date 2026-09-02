@@ -24,4 +24,9 @@ public class FestivalABM {
 	public Long traerCantidadUnidadesDeVenta(long idFestival) {
 		return dao.traerCantidadUnidadesDeVenta(idFestival);
 	}
+	
+	public List<Festival>traerFestivalesConXCantDeUnidades(long cantidad){
+		return dao.traerFestivalesConXCantDeUnidades(cantidad);
+		
+				}
 }

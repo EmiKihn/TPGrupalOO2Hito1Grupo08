@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -16,6 +17,14 @@ public class PedidoDao {
 
 	private static Session session;
 	private static Transaction tx;
+	private static PedidoDao instancia = null; 
+
+	public static PedidoDao getInstancia() {
+		if(instancia==null) {
+			instancia= new PedidoDao();
+		}
+		return instancia;
+	}
 	
 	private void iniciaOperacion() throws HibernateException{
 		session=HibernateUtil.getSessionFactory().openSession();
@@ -31,21 +40,9 @@ public class PedidoDao {
 		Pedido objeto = null;
 		try {
 		iniciaOperacion();
-		objeto = (Pedido) session.get(Pedido.class, idPedido);
-		}catch(HibernateException he) {
-			manejaExcepcion(he);
-		} finally {
-		session.close();
-		}
-		return objeto;
-		}
-	
-	public Pedido traerPorFecha(LocalDate fechaTransaccion) {
-		Pedido objeto = null;
-		try {
-		iniciaOperacion();
-		objeto= (Pedido) session.createQuery("from Pedido p where p.fechaTransaccion = :fechaTransaccion")
-				.setParameter("fechaTransaccion", fechaTransaccion)
+		String hql="select p from Pedido p inner join fetch p.cajero inner join fetch p.unidadDeVenta inner join fetch p.detalles WHERE p.idPedido= :idPedido";
+		objeto= session.createQuery(hql, Pedido.class)
+				.setParameter("idPedido", idPedido)
 				.uniqueResult();
 		}catch(HibernateException he) {
 			manejaExcepcion(he);
@@ -55,11 +52,19 @@ public class PedidoDao {
 		return objeto;
 		}
 	
-	public List<Pedido> traer() {
+	
+	public List<Pedido> traer(LocalDate fechaDesde, LocalDate fechaHasta) {
 		List<Pedido> lista = new ArrayList<Pedido>();
 		try {
 		iniciaOperacion();
-		Query<Pedido> query = session.createQuery("from Pedido p", Pedido.class);
+		Query<Pedido> query = session.createQuery("select distinct p from Pedido p"
+				+ " inner JOIN fetch p.cajero"
+				+ " inner JOIN fetch p.unidadDeVenta "
+				+ " inner JOIN fetch p.detalles d"
+				+ " inner JOIN fetch d.plato "
+				+ "WHERE p.fechaTransaccion >=: fechaDesde AND p.fechaTransaccion <=:fechaHasta", Pedido.class)
+				.setParameter("fechaDesde", fechaDesde)
+				.setParameter("fechaHasta",fechaHasta);
 		lista = query.getResultList();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
