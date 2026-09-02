@@ -54,7 +54,7 @@ public class Plato {
 	public void setPrecioDeVenta(double precioDeVenta) {
 		this.precioDeVenta = precioDeVenta;
 	}
-
+	
 
 	@Override
 	public String toString() {

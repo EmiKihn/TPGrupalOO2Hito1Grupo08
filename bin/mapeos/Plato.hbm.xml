@@ -10,5 +10,6 @@
 		<property name="nombre" column="nombre" type="string"/>
 		<property name="costoDeProduccion" column="costoDeProduccion" type="double"/>
 		<property name="precioDeVenta" column="precioDeVenta" type="double"/>
+		
 	</class>
 </hibernate-mapping>
