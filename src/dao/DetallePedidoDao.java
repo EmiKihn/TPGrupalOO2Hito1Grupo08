@@ -9,12 +9,21 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import datos.DetallePedido;
+import negocio.DetallePedidoABM;
 
 
 public class DetallePedidoDao {
 
 	private static Session session;
 	private static Transaction tx;
+	private static DetallePedidoDao instancia=null;
+	
+	public static DetallePedidoDao getInstance() {
+		if(instancia==null) {
+			instancia=new DetallePedidoDao();
+		}
+		return instancia;
+	}
 	
 	private void iniciaOperacion() throws HibernateException{
 		session=HibernateUtil.getSessionFactory().openSession();
@@ -30,7 +39,10 @@ public class DetallePedidoDao {
 		DetallePedido objeto = null;
 		try {
 		iniciaOperacion();
-		objeto = (DetallePedido) session.get(DetallePedido.class, idDetallePedido);
+		String hql= "select d from DetallePedido d inner join fetch d.plato where d.idDetallePedido=:idDetallePedido";
+		objeto = session.createQuery(hql,DetallePedido.class)
+				.setParameter("idDetallePedido", idDetallePedido)
+				.uniqueResult();
 		}catch(HibernateException he) {
 			manejaExcepcion(he);
 		} finally {
@@ -43,7 +55,7 @@ public class DetallePedidoDao {
 		List<DetallePedido> lista = new ArrayList<DetallePedido>();
 		try {
 		iniciaOperacion();
-		Query<DetallePedido> query = session.createQuery("from DetallePedido d", DetallePedido.class);
+		Query<DetallePedido> query = session.createQuery("from DetallePedido d inner join fetch d.plato", DetallePedido.class);
 		lista = query.getResultList();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);

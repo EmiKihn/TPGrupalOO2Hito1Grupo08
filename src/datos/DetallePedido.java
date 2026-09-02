@@ -58,8 +58,7 @@ public class DetallePedido {
 
 	@Override
 	public String toString() {
-		return "DetallePedido [cantidad=" + cantidad + ", precioDeVenta=" + precioDeVenta + ", pedido=" + pedido
-				+ ", plato=" + plato + "]";
+		return "DetallePedido [cantidad=" + cantidad + ", precioDeVenta=" + precioDeVenta +"]";
 	}
 
 
