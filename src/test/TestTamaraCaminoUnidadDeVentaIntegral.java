@@ -26,7 +26,7 @@ public class TestTamaraCaminoUnidadDeVentaIntegral {
             System.out.println("-------CU 2 ---------");
     		System.out.println("TRAER POR PATENTE:");
             // traer patente en FoodTruck
-            FoodTruck ft = FoodTruckABM.getInstance().traer("AD789GH");///Reemplazar "AD789GH" con una patente valida del script SQL 
+            FoodTruck ft = FoodTruckABM.getInstance().traer("AB456CD");///Reemplazar con una patente valida del script SQL 
             System.out.println("FoodTruck traido por patente: " + ft);
             
             System.out.println("-------CU 3 ---------");
