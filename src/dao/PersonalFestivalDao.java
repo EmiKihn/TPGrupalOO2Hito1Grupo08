@@ -77,21 +77,6 @@ public class PersonalFestivalDao {
 		return staff;
 	}
 	
-	public PersonalFestival traerRepresentantePorUnidad(long idUnidad) {
-		PersonalFestival representante= null;
-		try {
-			iniciaOperacion();
-			String hql="SELECT pf from UnidadDeVenta u JOIN u.staff pf where u.idUnidadDeVenta=:idUnidad AND pf.representante=true";
-			representante= session.createQuery(hql,PersonalFestival.class)
-					.setParameter("idUnidad", idUnidad)
-					.uniqueResult();
-		}catch(HibernateException he) {
-			manejaExcepcion(he);
-		}finally {
-			session.close();
-		}
-		return representante;
-	}
 	
 	//CASO DE USO TRAER COCINEROS POR ESPECIALIDAD
 	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
