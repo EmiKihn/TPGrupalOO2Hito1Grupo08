@@ -19,5 +19,5 @@
 - Tamara Camino: Traer Lista Unidad de Venta, Traer por patente en FoodTruck y Traer FoodTruck con su personal asignado.
 - Gino Ricciardulli: Traer Detalle Pedido, Traer plato y Traer Pedido.
 - Emiliano Ezequiel Kihn: Traer festival y Traer festivales por cantidad de unidades
-- Lautaro Leiva Szapajko: Traer cajeros por recaudación, traer cajeros por turno, traer cocinero especialidad, traer personal festival y traer representante por unidad.   
+- Lautaro Leiva Szapajko: Traer cajeros por recaudación, traer cajeros por turno, traer cocinero especialidad, traer personal festival, traer representante por unidad y traer cocinero carnet vencido. 
 
