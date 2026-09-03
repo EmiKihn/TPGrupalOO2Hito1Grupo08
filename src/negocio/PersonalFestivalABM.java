@@ -27,10 +27,8 @@ public class PersonalFestivalABM {
 	public List<PersonalFestival> traer(){
 		return PersonalFestivalDao.getInstance().traer();
 	}
+
 	
-	public PersonalFestival traerRepresentantePorUnidad(long idUnidad) {
-		return PersonalFestivalDao.getInstance().traerRepresentantePorUnidad(idUnidad);
-	}
 	public List<Cocinero> traerCocinerosPorEspecialidad(String especialidad){
 		return PersonalFestivalDao.getInstance().traerCocinerosPorEspecialidad(especialidad);
 	}
