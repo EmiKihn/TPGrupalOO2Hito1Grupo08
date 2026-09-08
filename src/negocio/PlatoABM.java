@@ -28,7 +28,8 @@ public class PlatoABM {
 	public Plato traerPorNombre(String nombre) {
 		return PlatoDao.getInstancia().traerPorNombre(nombre);
 	}
-private PlatoABM() {
-		
+	
+	public List<Plato> traer(double costoMaximo, double precioMinimo) {
+	    return PlatoDao.getInstancia().traer(costoMaximo, precioMinimo);
 	}
 }

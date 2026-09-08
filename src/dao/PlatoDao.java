@@ -75,5 +75,33 @@ public class PlatoDao {
 		}
 		return lista;
 	}
+	
+	public List<Plato> traer(double costoMaximo, double precioMinimo) {
+
+	    List<Plato> lista = null;
+
+	    try {
+	        iniciaOperacion();
+
+	        String hql = "FROM Plato p WHERE p.costoDeProduccion < :costo "
+	                   + "AND p.precioDeVenta > :precio";
+
+	        Query<Plato> query = session.createQuery(hql, Plato.class);
+
+	        query.setParameter("costo", costoMaximo);
+	        query.setParameter("precio", precioMinimo);
+
+	        lista = query.getResultList();
+
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	        throw he;
+
+	    } finally {
+	        session.close();
+	    }
+
+	    return lista;
+	}
 }
 

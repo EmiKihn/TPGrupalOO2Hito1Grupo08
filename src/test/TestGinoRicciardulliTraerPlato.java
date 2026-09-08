@@ -2,9 +2,7 @@ package test;
 
 import java.util.List;
 
-import datos.Pedido;
 import datos.Plato;
-import negocio.PedidoABM;
 import negocio.PlatoABM;
 
 public class TestGinoRicciardulliTraerPlato {
@@ -12,18 +10,32 @@ public class TestGinoRicciardulliTraerPlato {
 	public static void main(String[] args) {
 
 		
-		System.out.println("Test traer todos los platos:\n");
-		for (Plato p: PlatoABM.getInstancia().traer()) {
-			System.out.println(p);
-		}
-		
-		System.out.println("Traer plato con id 1:\n");
-		System.out.println(PlatoABM.getInstancia().traer(1));
-		
-		String nombre = "nombre";
-		System.out.println("Traer el plato " + nombre + ":\n");
-		System.out.println(PlatoABM.getInstancia().traerPorNombre(nombre));
-		
-	}
+		double costoMaximo = 3500;
+        double precioMinimo = 5500;
 
+        List<Plato> lista = PlatoABM.getInstancia()
+                .traer(costoMaximo, precioMinimo);
+
+
+        System.out.println("\n==================================================");
+        System.out.println("          REPORTE DE PLATOS RENTABLES");
+        System.out.println("==================================================");
+
+        for (Plato p : lista) {
+
+            double ganancia = p.getPrecioDeVenta() - p.getCostoDeProduccion();
+
+            System.out.printf(
+                "PLATO: %s | COSTO: $%.2f | PRECIO: $%.2f | GANANCIA: $%.2f%n",
+                p.getNombre(),
+                p.getCostoDeProduccion(),
+                p.getPrecioDeVenta(),
+                ganancia
+            );
+
+        }
+
+        System.out.println("==================================================");
+        System.out.println("Cantidad encontrados: " + lista.size());
+    }
 }
