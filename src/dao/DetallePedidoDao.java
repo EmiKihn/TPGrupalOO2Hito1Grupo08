@@ -1,5 +1,6 @@
 package dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +63,38 @@ public class DetallePedidoDao {
 		session.close();
 		}
 		return lista;
+	}
+	
+	public List<DetallePedido> traerMasVendidos(LocalDate desde, LocalDate hasta) {
+
+	    List<DetallePedido> lista = null;
+
+	    try {
+	        iniciaOperacion();
+
+	        String hql = "FROM DetallePedido d "
+	                   + "JOIN FETCH d.plato "
+	                   + "WHERE d.pedido.fechaTransaccion BETWEEN :desde AND :hasta "
+	                   + "ORDER BY d.cantidad DESC";
+
+	        Query<DetallePedido> query = session.createQuery(hql, DetallePedido.class);
+
+	        query.setParameter("desde", desde);
+	        query.setParameter("hasta", hasta);
+
+	        lista = query.getResultList();
+
+	    } catch (HibernateException he) {
+
+	        manejaExcepcion(he);
+
+	    } finally {
+
+	        session.close();
+
+	    }
+
+	    return lista;
 	}
 }
 
