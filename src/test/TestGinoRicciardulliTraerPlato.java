@@ -13,9 +13,7 @@ public class TestGinoRicciardulliTraerPlato {
 		double costoMaximo = 3500;
         double precioMinimo = 5500;
 
-        List<Plato> lista = PlatoABM.getInstancia()
-                .traer(costoMaximo, precioMinimo);
-
+        List<Plato> lista = PlatoABM.getInstancia().traer(costoMaximo, precioMinimo);
 
         System.out.println("\n==================================================");
         System.out.println("          REPORTE DE PLATOS RENTABLES");

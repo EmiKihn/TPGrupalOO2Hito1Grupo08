@@ -1,5 +1,6 @@
 package negocio;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import dao.DetallePedidoDao;
@@ -21,5 +22,11 @@ public class DetallePedidoABM {
 	
 	public List<DetallePedido> traer() {
 		return DetallePedidoDao.getInstance().traer();
+	}
+	
+	public List<DetallePedido> traerMasVendidos(LocalDate desde, LocalDate hasta) {
+
+	    return DetallePedidoDao.getInstance().traerMasVendidos(desde, hasta);
+
 	}
 }
